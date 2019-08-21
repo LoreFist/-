@@ -1,0 +1,54 @@
+<script>
+
+/***** input var *****/
+var intStart    = 0;
+var intStop     = 10;
+/*********************/
+
+var countNumber = 0;
+var pad 		= 6;
+
+//add zero in number, exp: pad=6, integer=1, return 000001;
+function padder (len, pad){
+	if (len === undefined){
+		len = 1;
+	} else if (pad === undefined){
+		pad = '0';
+	}
+
+	var pads = '';
+	while (pads.length < len){
+		pads += pad;
+	}
+
+	this.pad = function (what){
+		var s = what.toString();
+		return pads.substring(0, pads.length - s.length) + s;
+	};
+}
+
+//if at least one character is repeated in the string it will be true 
+function duplicateCheck(str){
+	for(var i=0; i < str.length; i++){
+		if (str.split(str[i]).length-1 > 1){
+			return true;
+		}  
+	}	
+	return false;
+} 
+
+//iterate over all numbers
+for(var i = intStart; i <= intStop; i++){
+	var intArray = [];
+	
+	var zero6 = new padder(pad);
+	var num = zero6.pad(i).toString();
+	
+	if(duplicateCheck(num) == false)
+		countNumber++;
+	
+}
+	
+
+document.write('number of repetitions=' + countNumber); 
+</script>
